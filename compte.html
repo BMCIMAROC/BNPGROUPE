@@ -34,6 +34,12 @@
       100% { transform: translateY(-10px); }
     }
 
+    nav {
+      display: flex;
+      justify-content: space-between;
+      width: 60%; /* Adjust to ensure it fits on mobile screens */
+    }
+
     nav a {
       margin: 0 15px;
       color: #00704A;
@@ -256,12 +262,13 @@
 
       nav {
         margin-top: 10px;
-        display: flex;
-        flex-direction: column;
+        flex-direction: row; /* Ensures items stay on the same line */
+        justify-content: space-between; /* Space out items evenly */
+        width: 100%;
       }
 
       nav a {
-        margin: 5px 0;
+        margin: 0 5px; /* Reduce spacing between items */
       }
 
       .search-bar {
@@ -285,6 +292,10 @@
 
       .card .balance {
         font-size: 1.5em;
+      }
+
+      nav a {
+        font-size: 12px; /* Reduce font size for better fitting */
       }
     }
   </style>
