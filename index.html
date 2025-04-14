@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMCI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .carousel {
+        position: relative;
+        overflow: hidden;
+      }
+      .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+      .carousel-control-prev,
+      .carousel-control-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .carousel-control-prev {
+        left: 10px;
+      }
+      .carousel-control-next {
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-4">
+        <div class="flex items-center space-x-4">
+          <img src="logo.png" alt="BMCI Logo" class="w-16 h-auto" />
+          <div>
+            <h1 class="text-xl font-bold">BMCI</h1>
+            <p class="text-sm text-gray-600">GROUPE BNP PARIBAS</p>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="login.html" class="text-green-700 font-bold">ACCÈS AUX COMPTES</a>
+          <a href="#" class="text-gray-700">DEVENIR CLIENT</a>
+        </div>
+      </div>
+      <div class="bg-gray-100 py-2">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center px-4 text-sm">
+          <nav class="flex flex-wrap gap-x-4 gap-y-2">
+            <a class="text-gray-700" href="#">PARTICULIERS</a>
+            <a class="text-gray-700" href="#">PROFESSIONNELS</a>
+            <a class="text-gray-700" href="#">BANQUE PRIVÉE</a>
+            <a class="text-gray-700" href="#">ENTREPRISES</a>
+            <a class="text-gray-700" href="#">نحن</a>
+            <a class="text-gray-700" href="#">NOUS CONNAÎTRE</a>
+            <a class="text-gray-700" href="#">RECRUTEMENT</a>
+          </nav>
+          <p class="text-gray-600 hidden lg:block">Site également consultable sur mobile !</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section class="bg-blue-100 py-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-4">
+          <div class="md:w-1/2 mb-8 md:mb-0">
+            <h2 class="text-3xl font-bold mb-4">ÉCHELONNEZ VOS PAIEMENTS, PAS VOS ENVIES</h2>
+            <p class="text-lg mb-4">Achetez maintenant, payez en 3 fois</p>
+            <a class="bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800 transition" href="#">EN SAVOIR PLUS</a>
+          </div>
+          <div class="md:w-1/2 w-full">
+            <div class="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item">
+                  <img class="w-full h-auto object-cover" src="credit-card-2439141_1280.jpg" alt="Carte BMCI paiement" />
+                </div>
+                <div class="carousel-item">
+                  <img class="w-full h-auto object-cover" src="istockphoto-1927881398-1024x1024.jpg" alt="Paiement digital BMCI" />
+                </div>
+                <div class="carousel-item">
+                  <img class="w-full h-auto object-cover" src="istockphoto-1789123613-1024x1024.jpg" alt="Services bancaires BMCI" />
+                </div>
+              </div>
+              <div class="carousel-control-prev" onclick="prevSlide()">
+                <i class="fas fa-chevron-left"></i>
+              </div>
+              <div class="carousel-control-next" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-orange-500 py-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-6 px-4">
+          <div class="text-white flex flex-col items-center">
+            <i class="fas fa-file-alt text-2xl mb-1"></i>
+            <span>OUVRIR UN COMPTE</span>
+          </div>
+          <div class="text-white flex flex-col items-center">
+            <i class="fas fa-credit-card text-2xl mb-1"></i>
+            <span>CHOISIR UNE CARTE</span>
+          </div>
+          <div class="text-white flex flex-col items-center">
+            <i class="fas fa-laptop text-2xl mb-1"></i>
+            <span>GÉRER À DISTANCE</span>
+          </div>
+          <div class="text-white flex flex-col items-center">
+            <i class="fas fa-hand-holding-usd text-2xl mb-1"></i>
+            <span>EMPRUNTER</span>
+          </div>
+          <div class="text-white flex flex-col items-center">
+            <i class="fas fa-piggy-bank text-2xl mb-1"></i>
+            <span>ÉPARGNER</span>
+          </div>
+          <div class="text-white flex flex-col items-center">
+            <i class="fas fa-shield-alt text-2xl mb-1"></i>
+            <span>PROTÉGER</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+          <h2 class="text-2xl font-bold mb-6">POURQUOI DEVENIR CLIENT BMCI ?</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white shadow-md p-4 rounded">
+              <h3 class="text-lg font-bold mb-2">LES 4 BONNES RAISONS</h3>
+              <ul class="list-disc list-inside text-sm">
+                <li>SERVICE PERSONNALISÉ</li>
+                <li>PRODUITS INNOVANTS</li>
+                <li>BANQUE DIGITALE</li>
+                <li>RÉSEAU INTERNATIONAL</li>
+              </ul>
+            </div>
+            <div class="bg-white shadow-md p-4 rounded text-center">
+              <img src="gold-163519_1280.jpg" alt="Service personnalisé" class="mx-auto" />
+              <p class="mt-2 text-sm">Service personnalisé et à l'écoute</p>
+            </div>
+            <div class="bg-white shadow-md p-4 rounded text-center">
+              <img src="istockphoto-1159334654-1024x1024.jpg" alt="Produits innovants" class="mx-auto" />
+              <p class="mt-2 text-sm">Des produits bancaires modernes</p>
+            </div>
+            <div class="bg-white shadow-md p-4 rounded text-center">
+              <img src="istockphoto-1927881398-1024x1024.jpg" alt="Banque digitale" class="mx-auto" />
+              <p class="mt-2 text-sm">Application et services en ligne</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 text-center">
+      <p>© 2025 BMCI. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-item");
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        const carouselInner = document.querySelector(".carousel-inner");
+        carouselInner.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      setInterval(nextSlide, 4000);
+    </script>
+  </body>
+</html>
