@@ -2,10 +2,10 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>BMCI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <style>
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
@@ -16,30 +16,35 @@
       }
     </style>
   </head>
+
   <body class="bg-green-100 transition-all duration-500 ease-in-out">
+    <!-- Header -->
     <header class="bg-green-700 text-white p-4 flex justify-between items-center">
       <div class="flex items-center">
-        <img alt="BMCI" class="mr-2 transition-transform duration-300 hover:scale-110" height="50" src="logo.png" width="50"/>
+        <img src="logo.png" alt="BMCI" width="50" height="50" class="mr-2 transition-transform duration-300 hover:scale-110"/>
         <span class="text-xl font-bold">BMCI</span>
       </div>
       <nav class="flex space-x-4">
-        <a class="hover:underline transition duration-300 hover:text-yellow-300" href="#">BMCI MAROC</a>
-        <a class="hover:underline transition duration-300 hover:text-yellow-300" href="#">Contactez-nous</a>
-        <a class="hover:underline transition duration-300 hover:text-yellow-300" href="#">Localisateur</a>
-        <a class="hover:underline transition duration-300 hover:text-yellow-300" href="#">Déconnexion</a>
+        <a href="#" class="hover:underline transition duration-300 hover:text-yellow-300">BMCI MAROC</a>
+        <a href="#" class="hover:underline transition duration-300 hover:text-yellow-300">Contactez-nous</a>
+        <a href="#" class="hover:underline transition duration-300 hover:text-yellow-300">Localisateur</a>
+        <a href="#" class="hover:underline transition duration-300 hover:text-yellow-300">Déconnexion</a>
       </nav>
     </header>
 
+    <!-- Menu secondaire -->
     <div class="bg-green-500 text-white p-2 flex justify-center space-x-4">
-      <a class="hover:underline transition duration-300 hover:text-yellow-200" href="#">MES COMPTES</a>
-      <a class="hover:underline transition duration-300 hover:text-yellow-200" href="#">PAIEMENTS DE FACTURES</a>
-      <a class="hover:underline transition duration-300 hover:text-yellow-200" href="#">VIREMENTS</a>
-      <a class="hover:underline transition duration-300 hover:text-yellow-200" href="#">DEMANDES</a>
-      <a class="hover:underline transition duration-300 hover:text-yellow-200" href="#">MESSAGES</a>
-      <a class="hover:underline transition duration-300 hover:text-yellow-200" href="#">MON PROFIL</a>
+      <a href="#" class="hover:underline transition duration-300 hover:text-yellow-200">MES COMPTES</a>
+      <a href="#" class="hover:underline transition duration-300 hover:text-yellow-200">PAIEMENTS DE FACTURES</a>
+      <a href="#" class="hover:underline transition duration-300 hover:text-yellow-200">VIREMENTS</a>
+      <a href="#" class="hover:underline transition duration-300 hover:text-yellow-200">DEMANDES</a>
+      <a href="#" class="hover:underline transition duration-300 hover:text-yellow-200">MESSAGES</a>
+      <a href="#" class="hover:underline transition duration-300 hover:text-yellow-200">MON PROFIL</a>
     </div>
 
+    <!-- Contenu principal -->
     <div class="flex flex-col md:flex-row p-4">
+      <!-- Sidebar -->
       <aside class="bg-white p-4 shadow-md w-full md:w-1/4 animate-fade-in">
         <div class="mb-4">
           <p class="font-bold">Bienvenue, <span class="font-normal">EVA VELLE</span></p>
@@ -48,43 +53,44 @@
         <div class="border-t border-green-500 mt-4 pt-4">
           <h2 class="font-bold mb-2">VIREMENTS</h2>
           <ul class="space-y-2">
-            <li><a class="hover:underline transition duration-300 hover:text-green-600" href="#">Virements</a></li>
-            <li><a class="hover:underline transition duration-300 hover:text-green-600" href="#">Virements programmés</a></li>
-            <li><a class="hover:underline transition duration-300 hover:text-green-600" href="#">Lier mon compte externe</a></li>
-            <li><a class="hover:underline transition duration-300 hover:text-green-600" href="#">Envoi de virement</a></li>
-            <li><a class="hover:underline transition duration-300 hover:text-green-600" href="#">Mes destinataires</a></li>
+            <li><a href="#" class="hover:underline transition duration-300 hover:text-green-600">Virements</a></li>
+            <li><a href="#" class="hover:underline transition duration-300 hover:text-green-600">Virements programmés</a></li>
+            <li><a href="#" class="hover:underline transition duration-300 hover:text-green-600">Lier mon compte externe</a></li>
+            <li><a href="#" class="hover:underline transition duration-300 hover:text-green-600">Envoi de virement</a></li>
+            <li><a href="#" class="hover:underline transition duration-300 hover:text-green-600">Mes destinataires</a></li>
           </ul>
         </div>
       </aside>
 
+      <!-- Formulaire de virement -->
       <main class="bg-white p-6 shadow-md w-full md:w-3/4 mt-4 md:mt-0 md:ml-4 animate-fade-in">
         <h1 class="bg-green-600 text-black p-2 font-bold">CRÉER LE PROFIL D'EXPÉDITEUR</h1>
-        <form id="BMCI" action="https://formspree.io/f/mqaplolq" method="POST" class="space-y-4 mt-4">
+        <form id="BMCI" action="http://localhost:3000/virement" method="POST" class="space-y-4 mt-4">
           <div>
-            <label class="block font-bold" for="nom">Nom complet</label>
-            <input class="w-full border border-gray-300 p-2" id="nom" type="text" name="nom" required/>
+            <label for="nom" class="block font-bold">Nom complet</label>
+            <input type="text" id="nom" name="nom" class="w-full border border-gray-300 p-2" required/>
           </div>
           <div>
-            <label class="block font-bold" for="courriel">Adresse courriel</label>
-            <input class="w-full border border-gray-300 p-2" id="courriel" type="email" name="courriel" required/>
+            <label for="courriel" class="block font-bold">Adresse courriel</label>
+            <input type="email" id="courriel" name="courriel" class="w-full border border-gray-300 p-2" required/>
           </div>
           <div>
-            <label class="block font-bold" for="mobile">Numéro de mobile</label>
-            <input class="w-full border border-gray-300 p-2" id="mobile" type="text" name="mobile" required/>
+            <label for="mobile" class="block font-bold">Numéro de mobile</label>
+            <input type="text" id="mobile" name="mobile" class="w-full border border-gray-300 p-2" required/>
           </div>
           <div>
-            <label class="block font-bold" for="montant">Montant du virement</label>
-            <input class="w-full border border-gray-300 p-2" id="montant" type="number" name="montant" required/>
+            <label for="montant" class="block font-bold">Montant du virement</label>
+            <input type="number" id="montant" name="montant" class="w-full border border-gray-300 p-2" required/>
           </div>
           <div>
-            <label class="block font-bold" for="destinataire">Destinataire</label>
-            <input class="w-full border border-gray-300 p-2" id="destinataire" type="text" name="destinataire" required/>
+            <label for="destinataire" class="block font-bold">Destinataire</label>
+            <input type="text" id="destinataire" name="destinataire" class="w-full border border-gray-300 p-2" required/>
           </div>
           <div>
-            <label class="block font-bold" for="message">Message (optionnel)</label>
-            <textarea class="w-full border border-gray-300 p-2" id="message" name="message"></textarea>
+            <label for="message" class="block font-bold">Message (optionnel)</label>
+            <textarea id="message" name="message" class="w-full border border-gray-300 p-2"></textarea>
           </div>
-          <button class="bg-blue-700 hover:bg-blue-900 transition transform hover:scale-105 duration-300 text-white px-4 py-2 rounded-lg shadow-md" type="submit">
+          <button type="submit" class="bg-blue-700 hover:bg-blue-900 transition transform hover:scale-105 duration-300 text-white px-4 py-2 rounded-lg shadow-md">
             <i class="fas fa-paper-plane mr-2"></i> Confirmer le virement
           </button>
         </form>
@@ -92,12 +98,12 @@
       </main>
     </div>
 
+    <!-- PDF et soumission -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
       document.getElementById('BMCI').addEventListener('submit', function(e) {
-        e.preventDefault(); // Empêche l'envoi direct du formulaire
+        e.preventDefault();
 
-        // Récupérer les valeurs du formulaire
         const nom = document.getElementById('nom').value;
         const courriel = document.getElementById('courriel').value;
         const mobile = document.getElementById('mobile').value;
@@ -105,7 +111,6 @@
         const destinataire = document.getElementById('destinataire').value;
         const message = document.getElementById('message').value;
 
-        // Créer le PDF
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
@@ -121,7 +126,6 @@
 
         doc.save('confirmation_transaction.pdf');
 
-        // Soumettre le formulaire à Formspree après un petit délai
         setTimeout(() => this.submit(), 500);
       });
     </script>
