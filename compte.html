@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMCI Banque</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.5s ease;
+    }
+    header {
+      background-color: #ffffff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 40px;
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+    nav a {
+      margin: 0 15px;
+      color: #00704A;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #00B388;
+      bottom: -5px;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    .container {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+    .sidebar {
+      width: 25%;
+      padding: 20px;
+      animation: fadeInLeft 1s ease-out;
+    }
+    .content {
+      width: 75%;
+      padding: 20px;
+      animation: fadeInRight 1s ease-out;
+    }
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #00704A;
+    }
+    .card p {
+      margin: 10px 0;
+    }
+    .card .balance {
+      font-size: 2em;
+      color: #00B388;
+    }
+    .card .info {
+      background-color: #e9f7f4;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #dee2e6;
+      margin-bottom: 20px;
+    }
+    .tabs button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #00704A;
+    }
+    .tabs button:hover {
+      color: #00B388;
+    }
+    .tabs button.active {
+      border-bottom: 2px solid #00704A;
+    }
+    .search-bar {
+      display: flex;
+      margin-top: 20px;
+      animation: slideInUp 0.5s ease-out;
+    }
+    .search-bar input {
+      padding: 10px;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      margin-right: 10px;
+      flex: 1;
+    }
+    .search-bar button {
+      padding: 10px 20px;
+      background-color: #00704A;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .fixed-buttons {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .fixed-buttons button {
+      background-color: #00704A;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .fixed-chat {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #00704A;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .history-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      animation: slideInUp 0.5s ease-out;
+    }
+    .history-title {
+      font-size: 1.5em;
+      color: #00704A;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .transaction-item {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .transaction-item:hover {
+      background-color: #e0f4ee;
+      transform: scale(1.02);
+    }
+    .transaction-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      color: #6c757d;
+    }
+    .transaction-item .amount {
+      color: #00B388;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="BMCI logo" />
+    <nav>
+      <a href="#">Mes comptes</a>
+      <a href="#">Mes services</a>
+      <a href="#">Produits</a>
+      <a href="#">Parrainage</a>
+      <a href="#">Bourse & Actus</a>
+    </nav>
+    <div>
+      <i class="fas fa-search"></i>
+      <a href="#">EVA VELLE</a>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="card">
+        <h2>Total de mes avoirs</h2>
+        <p class="balance">832.709,00 €</p>
+      </div>
+      <div class="card" style="background-color: #00B388; color: #fff;">
+        <h2>Mes Dossiers en cours</h2>
+        <p>Ouverture de compte BMCI</p>
+      </div>
+      <div class="card">
+        <h2>Mes comptes bancaires</h2>
+        <p class="info">Solde <span style="float: right; color: #00B388;">832.709,00 €</span></p>
+        <div class="info">
+          <p style="color: #00704A;">BMCI</p>
+          <p>EVA VELLE <span style="float: right; color: #00B388;">832.709,00 €</span></p>
+        </div>
+      </div>
+      <div class="card">
+        <button style="color: #00704A; background: none; border: none; cursor: pointer;">
+          <i class="fas fa-plus-circle"></i> J'ajoute un compte externe
+        </button>
+      </div>
+      <div class="card">
+        <h2 style="color: #00B388;">Produits</h2>
+        <p class="info">Compte et Carte Bancaire <i class="fas fa-chevron-right" style="float: right;"></i></p>
+        <p class="info">Épargne <i class="fas fa-chevron-right" style="float: right;"></i></p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="card" style="background-color: #e0f4ee;">
+        <h2 style="color: #00704A;">Les cartes VISA BMCI sont disponibles.</h2>
+        <a href="#" style="color: #00704A; text-decoration: underline;">En savoir plus</a>
+      </div>
+      <div class="card">
+        <h2 style="color: #00704A;">BMCI</h2>
+        <div style="display: flex; justify-content: space-between;">
+          <div>
+            <p>Solde au 26 mars 2025</p>
+            <p class="balance">832.709,00 €</p>
+            <a href="#" style="color: #00704A; text-decoration: underline;">Consulter l'analyse de mon budget</a>
+          </div>
+          <div>
+            <p>Découvert autorisé</p>
+            <p class="balance" style="color: #000;">0,00 €</p>
+            <a href="#" style="color: #00704A; text-decoration: underline;">Gérer mon découvert autorisé</a>
+          </div>
+        </div>
+        <div class="info">
+          <p>Mouvements à venir hors carte <span style="float: right;">0,00 €</span></p>
+          <p>SOLDE À VENIR <span style="float: right;">1.708.709,00 €</span></p>
+        </div>
+      </div>
+
+      <div class="history-card">
+        <div class="history-title">Historique des transactions :</div>
+
+        <div class="transaction-item">
+          <div class="transaction-header">
+            <span>10.04</span>
+            <span class="amount">+378.000,00€</span>
+          </div>
+          <p>Virement à M.Klaus Klemens J. F</p>
+        </div>
+
+        <div class="transaction-item">
+          <div class="transaction-header">
+            <span>10.04</span>
+            <span class="amount">+498.000,00€</span>
+          </div>
+          <p>Virement à M.Klaus Klemens J. F</p>
+        </div>
+
+        <div class="transaction-item">
+          <div class="transaction-header">
+            <span>10.02</span>
+            <span class="amount">+150.000€</span>
+          </div>
+          <p>Virement à Mme Sylvie Clairbeaux</p>
+        </div>
+
+        <div class="transaction-item">
+          <div class="transaction-header">
+            <span>22.09.2024</span>
+            <span class="amount" style="color: red;">-200€</span>
+          </div>
+          <p>Paiement en ligne pour un ordinateur portable</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

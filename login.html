@@ -1,0 +1,158 @@
+﻿<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Se connecter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    .show-password {
+        cursor: pointer;
+    }
+  </style>
+  <script>
+    // Identifiants par défaut
+    const defaultID = "01252026";
+    const defaultPassword = "Houvret@25";
+
+    // Fonction de connexion
+    function handleLogin(event) {
+      event.preventDefault();  // Empêcher la soumission du formulaire
+
+      // Récupérer les valeurs des champs
+      const identifiant = document.getElementById("identifiant").value;
+      const password = document.getElementById("password").value;
+
+      // Vérifier si les identifiants sont corrects
+      if (identifiant === defaultID && password === defaultPassword) {
+        // Redirection vers la page compte.html si les identifiants sont corrects
+        window.location.href = "compte.html";
+      } else {
+        alert("Identifiant ou mot de passe incorrect.");
+      }
+    }
+
+    // Toggle password visibility
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const passwordIcon = document.getElementById("password-icon");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        passwordIcon.classList.remove("fa-eye");
+        passwordIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        passwordIcon.classList.remove("fa-eye-slash");
+        passwordIcon.classList.add("fa-eye");
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header Section -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+      <div class="flex items-center">
+        <img alt="Logo" class="h-8" src="logo.png" width="50"/>
+        <nav class="ml-6 space-x-4 text-sm">
+          <a class="text-gray-700" href="#">Particuliers</a>
+          <a class="text-gray-700" href="#">Auto-entrepreneurs</a>
+          <a class="text-gray-700" href="#">Professionnels</a>
+          <a class="text-gray-700" href="#">Entreprises</a>
+        </nav>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a class="text-gray-700" href="#">Institutions</a>
+        <a class="text-gray-700" href="#">Aide</a>
+        <a class="text-gray-700" href="#">FR</a>
+        <button class="border border-green-600 text-blue-600 px-4 py-1 rounded">Ouvrir un compte</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Section -->
+  <div class="bg-green-100 text-center py-2">
+    <p class="text-green-700 text-sm">
+      Site allégé, navigation simplifiée et design épuré : nous avons repensé notre site web pour mieux vous servir !
+      <a class="underline" href="#">En savoir plus</a>
+    </p>
+  </div>
+
+  <!-- Login Form Section -->
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center text-green-700 mb-6">Se connecter</h1>
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
+      <div class="border-b border-gray-200 mb-4">
+        <ul class="flex justify-center space-x-4 text-sm">
+          <li class="border-b-2 border-green-700 pb-2">
+            <a class="text-blue-700" href="#">Identifiants</a>
+          </li>
+          <li>
+            <a class="text-gray-700" href="#">Certificat E</a>
+          </li>
+          <li>
+            <a class="text-gray-700" href="#">SAFETRANS</a>
+          </li>
+        </ul>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="mb-4">
+          <label class="block text-gray-700" for="identifiant">Identifiant<span class="text-red-500">*</span></label>
+          <input class="w-full border border-gray-300 rounded px-3 py-2 mt-1" id="identifiant" required type="text"/>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700" for="password">Mot de passe<span class="text-red-500">*</span></label>
+          <div class="relative">
+            <input class="w-full border border-gray-300 rounded px-3 py-2 mt-1" id="password" required type="password"/>
+            <i id="password-icon" onclick="togglePassword()" class="fas fa-eye absolute right-3 top-3 text-gray-500 cursor-pointer"></i>
+          </div>
+        </div>
+        <button class="w-full bg-green-700 text-white py-2 rounded" type="submit">Se connecter</button>
+      </form>
+      <div class="flex justify-between mt-4 text-sm">
+        <a class="text-green-900" href="#">Codes d'accès oubliés<i class="fas fa-arrow-right"></i></a>
+        <a class="text-green-900" href="#">Infos sécurité<i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="mt-4 text-sm text-gray-700">
+        <p>Astuce : <a class="text-green-900 underline" href="#">Nos conseils pour sécuriser vos opérations et données.</a></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="bg-green-900 text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex space-x-4">
+          <a class="text-white" href="#">Centre d'aide</a>
+          <a class="text-white" href="#">Trouver une caisse</a>
+          <a class="text-white" href="#">Sourds et malentendants</a>
+        </div>
+        <button class="border border-white text-white px-4 py-1 rounded">Télécharger l'application</button>
+      </div>
+      <div class="flex justify-between items-center">
+        <div class="flex space-x-8 text-sm">
+          <div>
+            <a class="block text-white" href="#">Parrainez un proche et profitez ensemble d'avantages</a>
+            <a class="block text-white" href="#">Découvrir notre offre<i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div>
+            <a class="block text-white" href="#">Abonnez-vous à notre newsletter pour ne rien manquer de nos actualités</a>
+          </div>
+          <div>
+            <a class="block text-white" href="#">Mentions légales</a>
+            <a class="block text-white" href="#">Tarifs et conditions générales</a>
+            <a class="block text-white" href="#">Guides et informations réglementaires</a>
+            <a class="block text-white" href="#">Protection des données</a>
+            <a class="block text-white" href="#">Gestion des cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
