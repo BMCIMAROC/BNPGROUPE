@@ -14,6 +14,7 @@
       padding: 0;
       transition: background-color 0.5s ease;
     }
+
     header {
       background-color: #ffffff;
       padding: 10px 20px;
@@ -22,14 +23,17 @@
       justify-content: space-between;
       align-items: center;
     }
+
     header img {
       height: 40px;
       animation: bounce 1s infinite alternate;
     }
+
     @keyframes bounce {
       0% { transform: translateY(0); }
       100% { transform: translateY(-10px); }
     }
+
     nav a {
       margin: 0 15px;
       color: #00704A;
@@ -37,6 +41,7 @@
       font-weight: bold;
       position: relative;
     }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -49,25 +54,28 @@
       transform-origin: bottom right;
       transition: transform 0.3s ease-out;
     }
+
     nav a:hover::after {
       transform: scaleX(1);
       transform-origin: bottom left;
     }
+
     .container {
       display: flex;
       padding: 20px;
       gap: 20px;
     }
+
     .sidebar {
       width: 25%;
       padding: 20px;
-      animation: fadeInLeft 1s ease-out;
     }
+
     .content {
       width: 75%;
       padding: 20px;
-      animation: fadeInRight 1s ease-out;
     }
+
     .card {
       background-color: #fff;
       padding: 20px;
@@ -76,32 +84,39 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .card:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
+
     .card h2 {
       margin-top: 0;
       color: #00704A;
     }
+
     .card p {
       margin: 10px 0;
     }
+
     .card .balance {
       font-size: 2em;
       color: #00B388;
     }
+
     .card .info {
       background-color: #e9f7f4;
       padding: 10px;
       border-radius: 8px;
       margin-top: 10px;
     }
+
     .tabs {
       display: flex;
       border-bottom: 2px solid #dee2e6;
       margin-bottom: 20px;
     }
+
     .tabs button {
       background: none;
       border: none;
@@ -110,17 +125,20 @@
       font-weight: bold;
       color: #00704A;
     }
+
     .tabs button:hover {
       color: #00B388;
     }
+
     .tabs button.active {
       border-bottom: 2px solid #00704A;
     }
+
     .search-bar {
       display: flex;
       margin-top: 20px;
-      animation: slideInUp 0.5s ease-out;
     }
+
     .search-bar input {
       padding: 10px;
       border: 1px solid #dee2e6;
@@ -128,6 +146,7 @@
       margin-right: 10px;
       flex: 1;
     }
+
     .search-bar button {
       padding: 10px 20px;
       background-color: #00704A;
@@ -136,6 +155,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .fixed-buttons {
       position: fixed;
       right: 20px;
@@ -145,6 +165,7 @@
       flex-direction: column;
       gap: 10px;
     }
+
     .fixed-buttons button {
       background-color: #00704A;
       color: #fff;
@@ -154,11 +175,13 @@
       cursor: pointer;
       animation: pulse 2s infinite;
     }
+
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
+
     .fixed-chat {
       position: fixed;
       right: 20px;
@@ -172,20 +195,22 @@
       gap: 10px;
       cursor: pointer;
     }
+
     .history-card {
       background-color: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
-      animation: slideInUp 0.5s ease-out;
     }
+
     .history-title {
       font-size: 1.5em;
       color: #00704A;
       margin-bottom: 10px;
       text-transform: uppercase;
     }
+
     .transaction-item {
       background-color: #f9f9f9;
       padding: 15px;
@@ -193,18 +218,74 @@
       margin-bottom: 10px;
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
+
     .transaction-item:hover {
       background-color: #e0f4ee;
       transform: scale(1.02);
     }
+
     .transaction-header {
       display: flex;
       justify-content: space-between;
       font-weight: bold;
       color: #6c757d;
     }
+
     .transaction-item .amount {
       color: #00B388;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .content {
+        width: 100%;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 5px 0;
+      }
+
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .fixed-buttons {
+        right: 10px;
+      }
+    }
+
+    /* Small screens (mobile) */
+    @media (max-width: 480px) {
+      .card {
+        padding: 15px;
+      }
+
+      .card h2 {
+        font-size: 1.2em;
+      }
+
+      .card .balance {
+        font-size: 1.5em;
+      }
     }
   </style>
 </head>
@@ -266,57 +347,28 @@
           <div>
             <p>Solde au 26 mars 2025</p>
             <p class="balance">879.663,00 €</p>
-            <a href="#" style="color: #00704A; text-decoration: underline;">Consulter l'analyse de mon budget</a>
+            <a href="#" style="color: #00704A; text-decoration: underline;">En savoir plus</a>
           </div>
           <div>
-            <p>Découvert autorisé</p>
-            <p class="balance" style="color: #000;">0,00 €</p>
-            <a href="#" style="color: #00704A; text-decoration: underline;">Gérer mon découvert autorisé</a>
+            <p>Retrait via ATM</p>
+            <span style="color: red;">-279.200,00€</span>
           </div>
-        </div>
-        <div class="info">
-          <p>Mouvements à venir hors carte <span style="float: right;">0,00 €</span></p>
-          <p>SOLDE À VENIR <span style="float: right;">0.00 €</span></p>
         </div>
       </div>
 
-      <div class="history-card">
-        <div class="history-title">Historique des transactions :</div>
-
-        <div class="transaction-item">
-          <div class="transaction-header">
-            <span>10.04</span>
-            <span class="amount">+378.000,00€</span>
-          </div>
-          <p>Virement à M.Klaus Klemens J. F</p>
-        </div>
-
-        <div class="transaction-item">
-          <div class="transaction-header">
-            <span>10.04</span>
-            <span class="amount">+498.000,00€</span>
-          </div>
-          <p>Virement à M.Klaus Klemens J. F</p>
-        </div>
-
-        <div class="transaction-item">
-          <div class="transaction-header">
-            <span>10.02</span>
-            <span class="amount">+150.000€</span>
-          </div>
-          <p>Virement à Mme Sylvie Clairbeaux</p>
-        </div>
-
-        <div class="transaction-item">
-          <div class="transaction-header">
-            <span>22.09.2024</span>
-            <span class="amount" style="color: red;">-200€</span>
-          </div>
-          <p>Paiement en ligne pour un ordinateur portable</p>
-        </div>
-
-      </div>
     </div>
   </div>
+
+  <div class="fixed-buttons">
+    <button><i class="fas fa-phone-alt"></i></button>
+    <button><i class="fas fa-envelope"></i></button>
+    <button><i class="fas fa-comment-dots"></i></button>
+  </div>
+
+  <div class="fixed-chat">
+    <i class="fas fa-comments"></i>
+    <span>Chat with us</span>
+  </div>
+
 </body>
 </html>
