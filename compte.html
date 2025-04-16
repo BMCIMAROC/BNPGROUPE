@@ -7,166 +7,143 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+    * {
       margin: 0;
       padding: 0;
-      transition: background-color 0.5s ease;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
     }
 
     header {
-      background-color: #ffffff;
-      padding: 10px 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     header img {
-      height: 40px;
-      animation: bounce 1s infinite alternate;
-    }
-
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px); }
+      height: 50px;
     }
 
     nav {
       display: flex;
-      justify-content: space-between;
-      width: 70%;
+      gap: 20px;
     }
 
     nav a {
-      margin: 0 15px;
-      color: #00704A;
       text-decoration: none;
+      color: #333;
       font-weight: bold;
-      position: relative;
+      transition: color 0.3s;
     }
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background-color: #00B388;
-      bottom: -5px;
-      left: 0;
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.3s ease-out;
-    }
-
-    nav a:hover::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
+    nav a:hover {
+      color: #00704A;
     }
 
     .container {
       display: flex;
-      padding: 20px;
-      gap: 20px;
+      margin: 20px;
     }
 
     .sidebar {
-      width: 25%;
-      padding: 20px;
-    }
-
-    .content {
-      width: 75%;
-      padding: 20px;
+      width: 300px;
+      margin-right: 20px;
     }
 
     .card {
       background-color: #fff;
       padding: 20px;
+      border-radius: 10px;
       margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h2 {
-      margin-top: 0;
+    .balance {
+      font-size: 24px;
       color: #00704A;
     }
 
-    .card p {
-      margin: 10px 0;
+    .info {
+      padding: 5px 0;
     }
 
-    .card .balance {
-      font-size: 2em;
-      color: #00B388;
-    }
-
-    .card .info {
-      background-color: #e9f7f4;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
+    .content {
+      flex: 1;
     }
 
     .tabs {
       display: flex;
-      border-bottom: 2px solid #dee2e6;
+      gap: 10px;
       margin-bottom: 20px;
     }
 
     .tabs button {
-      background: none;
-      border: none;
       padding: 10px 20px;
+      background-color: #e0e0e0;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
-      color: #00704A;
-    }
-
-    .tabs button:hover {
-      color: #00B388;
     }
 
     .tabs button.active {
-      border-bottom: 2px solid #00704A;
-    }
-
-    .search-bar {
-      display: flex;
-      margin-top: 20px;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      border: 1px solid #dee2e6;
-      border-radius: 4px;
-      margin-right: 10px;
-      flex: 1;
-    }
-
-    .search-bar button {
-      padding: 10px 20px;
       background-color: #00704A;
       color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .history-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .transaction-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+
+    .transaction-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .amount {
+      color: #00704A;
+      font-weight: bold;
+    }
+
+    .transaction-header i {
+      margin-right: 10px;
     }
 
     .fixed-buttons {
       position: fixed;
+      bottom: 20px;
       right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -174,128 +151,84 @@
 
     .fixed-buttons button {
       background-color: #00704A;
-      color: #fff;
+      color: white;
       border: none;
-      padding: 15px;
+      padding: 10px;
       border-radius: 50%;
       cursor: pointer;
-      animation: pulse 2s infinite;
+      font-size: 16px;
+      transition: transform 0.3s;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    .fixed-buttons button:hover {
+      transform: scale(1.1);
     }
 
     .fixed-chat {
       position: fixed;
-      right: 20px;
       bottom: 20px;
-      background-color: #00704A;
-      color: #fff;
+      left: 20px;
+      background-color: #00B388;
+      color: white;
       padding: 10px 20px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      border-radius: 30px;
       cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    .history-card {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .filter-section {
       margin-bottom: 20px;
     }
 
-    .history-title {
-      font-size: 1.5em;
-      color: #00704A;
-      margin-bottom: 10px;
-      text-transform: uppercase;
+    .filter-section input,
+    .filter-section select {
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
-    .transaction-item {
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+    .filter-section button {
+      background-color: #00704A;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .transaction-item:hover {
-      background-color: #e0f4ee;
-      transform: scale(1.02);
+    .highlighted {
+      background-color: #00B388;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
     }
 
-    .transaction-header {
-      display: flex;
-      justify-content: space-between;
+    .highlighted p {
       font-weight: bold;
-      color: #6c757d;
     }
 
-    .transaction-item .amount {
-      color: #00B388;
+    .highlighted span {
+      color: #fff;
+      font-weight: bold;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
       .container {
         flex-direction: column;
       }
 
       .sidebar {
         width: 100%;
+        margin-right: 0;
       }
 
-      .content {
-        width: 100%;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        margin-top: 10px;
-        flex-direction: row; /* Ensures items stay on the same line */
-        justify-content: space-between; /* Space out items evenly */
-        width: 100%;
-      }
-
-      nav a {
-        margin: 0 5px; /* Reduce spacing between items */
-      }
-
-      .search-bar {
+      .tabs {
         flex-direction: column;
       }
 
-      .fixed-buttons {
-        right: 10px;
-      }
-    }
-
-    /* Small screens (mobile) */
-    @media (max-width: 480px) {
-      .card {
-        padding: 15px;
-      }
-
-      .card h2 {
-        font-size: 1.2em;
-      }
-
-      .card .balance {
-        font-size: 1.5em;
-      }
-
-      nav a {
-        font-size: 12px; /* Reduce font size for better fitting */
+      .tabs button {
+        width: 100%;
       }
     }
   </style>
@@ -304,66 +237,102 @@
   <header>
     <img src="logo.png" alt="BMCI logo" />
     <nav>
-      <a href="#">Mes comptes</a>
-      <a href="#">Mes services</a>
-      <a href="#">Produits</a>
-      <a href="#">Parrainage</a>
-      <a href="#">Bourse & Actus</a>
-      <a href="virement.html" style="background-color: #00704A; color: white; padding: 10px 15px; border-radius: 5px;">Virement</a> <!-- Nouveau bouton "Virement" -->
+      <a href="#"><i class="fas fa-university animate__animated animate__fadeInDown"></i> Mes comptes</a>
+      <a href="#"><i class="fas fa-cogs animate__animated animate__fadeInDown"></i> Mes services</a>
+      <a href="#"><i class="fas fa-boxes animate__animated animate__fadeInDown"></i> Produits</a>
+      <a href="#"><i class="fas fa-user-friends animate__animated animate__fadeInDown"></i> Parrainage</a>
+      <a href="#"><i class="fas fa-chart-line animate__animated animate__fadeInDown"></i> Bourse & Actus</a>
+      <a href="virement.html" style="background-color: #00704A; color: white; padding: 10px 15px; border-radius: 5px;">
+        <i class="fas fa-exchange-alt animate__animated animate__tada animate__infinite"></i> Virement
+      </a>
     </nav>
     <div>
-      <i class="fas fa-search"></i>
+      <i class="fas fa-search animate__animated animate__fadeIn"></i>
       <a href="#">EVA VELLE</a>
-      <i class="fas fa-user-circle"></i>
+      <i class="fas fa-user-circle animate__animated animate__fadeIn"></i>
     </div>
   </header>
 
   <div class="container">
+    <!-- SIDEBAR -->
     <div class="sidebar">
       <div class="card">
-        <h2>Total de mes avoirs</h2>
-        <p class="balance">2.100.00,00 €</p>
+        <h2><i class="fas fa-piggy-bank animate__animated animate__bounce"></i> Total de mes avoirs</h2>
+        <p class="balance">1.220.337,00 €</p> <!-- Solde réduit -->
       </div>
       <div class="card" style="background-color: #00B388; color: #fff;">
-        <h2>Mes Dossiers en cours</h2>
+        <h2><i class="fas fa-tasks animate__animated animate__pulse animate__infinite"></i> Mes Dossiers en cours</h2>
         <p>Ouverture de compte BMCI</p>
       </div>
       <div class="card">
-        <h2>Mes comptes bancaires</h2>
-        <p class="info">Solde <span style="float: right; color: #00B388;">2.100.000,00 €</span></p>
+        <h2><i class="fas fa-wallet animate__animated animate__fadeInLeft"></i> Mes comptes bancaires</h2>
+        <p class="info">Solde <span style="float: right; color: #00B388;">1.220.337,00 €</span></p> <!-- Solde réduit -->
         <div class="info">
           <p style="color: #00704A;">BMCI</p>
-          <p>EVA VELLE <span style="float: right; color: #00B388;">2.100.000,00 €</span></p>
+          <p>EVA VELLE <span style="float: right; color: #00B388;">1.220.337,00 €</span></p> <!-- Solde réduit -->
         </div>
       </div>
       <div class="card">
         <button style="color: #00704A; background: none; border: none; cursor: pointer;">
-          <i class="fas fa-plus-circle"></i> J'ajoute un compte externe
+          <i class="fas fa-plus-circle animate__animated animate__heartBeat animate__infinite"></i> J'ajoute un compte externe
         </button>
       </div>
       <div class="card">
-        <h2 style="color: #00B388;">Produits</h2>
-        <p class="info">Compte et Carte Bancaire <i class="fas fa-chevron-right" style="float: right;"></i></p>
-        <p class="info">Épargne <i class="fas fa-chevron-right" style="float: right;"></i></p>
+        <h2 style="color: #00B388;"><i class="fas fa-briefcase animate__animated animate__fadeIn"></i> Produits</h2>
+        <p class="info">Compte et Carte Bancaire <i class="fas fa-chevron-right"></i></p>
+        <p class="info">Épargne <i class="fas fa-chevron-right"></i></p>
       </div>
     </div>
 
+    <!-- CONTENT -->
     <div class="content">
-      <div class="card" style="background-color: #e0f4ee;">
-        <h2 style="color: #00704A;">Les cartes VISA BMCI sont disponibles.</h2>
-        <a href="#" style="color: #00704A; text-decoration: underline;">En savoir plus</a>
+      <h2>Historique des transactions</h2>
+      <div class="tabs">
+        <button class="active">Transactions récentes</button>
+        <button>Virements</button>
+        <button>Relevé bancaire</button>
       </div>
-      <div class="card">
-        <h2 style="color: #00704A;">BMCI</h2>
-        <div style="display: flex; justify-content: space-between;">
-          <div>
-            <p>Solde au 26 mars 2025</p>
-            <p class="balance">2.100.000,00 €</p>
-            <a href="#" style="color: #00704A; text-decoration: underline;">En savoir plus</a>
+      <div class="tab-content active">
+        <div class="history-card">
+          <div class="transaction-item highlighted">
+            <div class="transaction-header">
+              <span>Virement à un tiers</span>
+              <span class="amount">-879.663,00 €</span>
+            </div>
+            <p><strong>Date :</strong> 15 Avril 2025</p>
+            <p><strong>Nom :</strong> <span style="color: #00704A; font-weight: bold;">Jean Claude Moyet</span></p>
+            <p><strong>Compte :</strong> <span style="color: #00704A; font-weight: bold;">30003 03431 XXXX XXX XXXX</span></p>
           </div>
-          <div>
-            <p>Retrait via ATM</p>
-            <span style="color: red;">0.00€</span>
+
+          <!-- Ajout des historiques de 2010 et 2011 -->
+          <div class="transaction-item">
+            <div class="transaction-header">
+              <span>Retrait d'argent</span>
+              <span class="amount">-500,00 €</span>
+            </div>
+            <p><strong>Date :</strong> 12 Janvier 2011</p>
+            <p><strong>Nom :</strong> <span style="color: #00704A; font-weight: bold;">Sophie Dupont</span></p>
+            <p><strong>Compte :</strong> <span style="color: #00704A; font-weight: bold;">70 5698 XXXX XXX XXX</span></p>
+          </div>
+
+          <div class="transaction-item">
+            <div class="transaction-header">
+              <span>Virement reçu</span>
+              <span class="amount">+1.200,00 €</span>
+            </div>
+            <p><strong>Date :</strong> 25 Mars 2010</p>
+            <p><strong>Nom :</strong> <span style="color: #00704A; font-weight: bold;">Michel Lemoine</span></p>
+            <p><strong>Compte :</strong> <span style="color: #00704A; font-weight: bold;">76 0943 XXXX XXX XXX</span></p>
+          </div>
+
+          <div class="transaction-item">
+            <div class="transaction-header">
+              <span>Virement externe</span>
+              <span class="amount">-2.000,00 €</span>
+            </div>
+            <p><strong>Date :</strong> 3 Juin 2010</p>
+            <p><strong>Nom :</strong> <span style="color: #00704A; font-weight: bold;">Pierre Moreau</span></p>
+            <p><strong>Compte :</strong> <span style="color: #00704A; font-weight: bold;">76 0831 XXXX XXX XXX</span></p>
           </div>
         </div>
       </div>
@@ -371,15 +340,12 @@
   </div>
 
   <div class="fixed-buttons">
-    <button><i class="fas fa-phone-alt"></i></button>
-    <button><i class="fas fa-envelope"></i></button>
-    <button><i class="fas fa-comment-dots"></i></button>
+    <button><i class="fas fa-arrow-right"></i></button>
+    <button><i class="fas fa-cogs"></i></button>
   </div>
 
   <div class="fixed-chat">
-    <i class="fas fa-comments"></i>
-    <span>Chat with us</span>
+    <i class="fas fa-comments"></i> Chat en direct
   </div>
-
 </body>
 </html>
